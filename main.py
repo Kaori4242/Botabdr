@@ -1,6 +1,3 @@
-from crypt import methods
-import re
-from turtle import update
 import telebot
 from telebot import types
 import os
