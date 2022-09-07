@@ -1,7 +1,8 @@
 import telebot
 from telebot import types
 import os
-from flask import Flask , request
+from flask import Flask, request
+
 
 
 
@@ -12,10 +13,12 @@ messaged = 'Хэй привет! Добро пожаловать в мир но�
 messageForMe = "Привет! Меня зовут Асылхан. Напиши мне и я создам бота, который нужен именно тебе! tg: @kaori_42 inst: @kaori_42"
 
 text = '[Разработчик бота: Асылхан 11А. Нужен бот,сайт, мобильное приложение или же игра? Напиши мне и ты получишь то, что нужно тебе!](https://t.me/kaori_42)'
-App_Url = 'https://abdrbotnispresident.herokuapp.com/{tokenn}'
+App_Url = f'https://abdrbotnispresident.herokuapp.com/{tokenn}'
+
 server = Flask(__name__)
 
-@server.route('/'+ tokenn, methods = ['POST'])
+
+@server.route('/' + tokenn, methods=['POST'])
 def get_message():
     json_string = request.get_data().decode('utf-8')
     update = telebot.types.Update.de_json(json_string)
@@ -25,11 +28,11 @@ def get_message():
 @server.route('/')
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url = App_Url)
-    return '!' , 200
+    bot.set_webhook(url=App_Url)
+    return '!', 200
 
 if __name__ == '__main__':
-    server.run(host='0.0.0.0' , port = int(os.environ.get('PORT' , 5000)))
+    server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
 
 
 def tele_vot():
